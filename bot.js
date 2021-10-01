@@ -27,9 +27,9 @@ bot.on('text', async (ctx) => {
 
         const formatData = `
 Country: ${data[0][0].country}
-All cases: ${(data[0][0].cases).toLocaleString()}
-All deaths: ${(data[0][0].deaths).toLocaleString()}
-All recovered: ${(data[0][0].recovered).toLocaleString()}
+All cases: ${(data[0][0].cases).toLocaleString('ru-RU')}
+All deaths: ${(data[0][0].deaths).toLocaleString('ru-RU')}
+All recovered: ${(data[0][0].recovered).toLocaleString('ru-RU')}
     `;
         ctx.reply(formatData);
     } catch {
