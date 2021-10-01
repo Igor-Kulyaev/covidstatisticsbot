@@ -9,7 +9,7 @@ bot.start((ctx) => ctx.reply(`
 Hi ${ctx.message.from.first_name}
 Find out statistics on Covid19
 Enter the country name in English and get the data.
-You may chech the whole list of countries using /help command
+You may check the whole list of countries using /help command
 `, Markup.keyboard([
     ['US', 'Russia'],
     ['Ukraine', 'Kazakhstan'],
@@ -21,17 +21,17 @@ bot.help((ctx) => ctx.reply(COUNTRIES_LIST));
 
 bot.on('text', async (ctx) => {
     let data = {};
-    
+
     try {
-    data = await api.getReportsByCountries(ctx.message.text);
-    
-    const formatData = `
-    Country: ${data[0][0].country}
-    Cases: ${data[0][0].cases}
-    Deaths: ${data[0][0].deaths}
-    Recovered: ${data[0][0].recovered}
+        data = await api.getReportsByCountries(ctx.message.text);
+
+        const formatData = `
+Country: ${data[0][0].country}
+All cases: ${(data[0][0].cases).toLocaleString()}
+All deaths: ${(data[0][0].deaths).toLocaleString()}
+All recovered: ${(data[0][0].recovered).toLocaleString()}
     `;
-    ctx.reply(formatData);
+        ctx.reply(formatData);
     } catch {
         console.log('Mistake');
         ctx.reply('Mistake, such country does not exist');
@@ -41,4 +41,3 @@ bot.on('text', async (ctx) => {
 bot.launch()
 
 console.log('Bot launched')
-
